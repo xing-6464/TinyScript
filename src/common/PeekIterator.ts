@@ -3,21 +3,16 @@ import LinkedList from 'linkedlist'
 const CACHE_SIZE = 10
 
 class PeekIterator {
-  constructor(it, endToken = null) {
-    this.it = it
+  // 需要pubBack元素
+  private stackPutBack = new LinkedList()
+  // 基于时间窗口的缓存
+  private queueCache = new LinkedList()
 
-    // 需要put back的元素
-    this.stackPutBacks = new LinkedList()
-
-    // 基于时间窗口的缓存
-    this.queueCache = new LinkedList()
-
-    this.endToken = endToken
-  }
+  constructor(private it: Iterator<any>, private endToken = null) {}
 
   peek() {
-    if (this.stackPutBacks.length > 0) {
-      return this.stackPutBacks.head
+    if (this.stackPutBack.length > 0) {
+      return this.stackPutBack.head
     }
 
     const val = this.next()
@@ -27,7 +22,7 @@ class PeekIterator {
 
   pubBack() {
     if (this.queueCache.length > 0) {
-      this.stackPutBacks.push(this.queueCache.pop())
+      this.stackPutBack.push(this.queueCache.pop())
     }
   }
 
@@ -36,13 +31,13 @@ class PeekIterator {
   }
 
   next() {
-    let val = null
+    let val: any = null
 
-    if (this.stackPutBacks.length > 0) {
-      val = this.stackPutBacks.pop()
+    if (this.stackPutBack.length > 0) {
+      val = this.stackPutBack.pop()
     } else {
       val = this.it.next().value
-      if (val === undefined) {
+      if (val == undefined) {
         const tmp = this.endToken
         this.endToken = null
         return tmp
