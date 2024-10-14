@@ -1,9 +1,9 @@
-const Enum = require('../common/Enum')
+import Enum from '../common/Enum'
 
-module.exports = {
+export default {
   KEYWORD: new Enum('KEYWORD', 1),
   VARIABLE: new Enum('VARIABLE', 1),
-  OPERATOR: new Enum('KOPERATOR', 1),
+  OPERATOR: new Enum('OPERATOR', 1),
   BRACKET: new Enum('BRACKET', 1),
   INTEGER: new Enum('INTEGER', 1),
   FLOAT: new Enum('FLOAT', 1),

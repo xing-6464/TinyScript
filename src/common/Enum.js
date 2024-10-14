@@ -5,4 +5,4 @@ class Enum {
   }
 }
 
-module.exports = Enum
+export default Enum

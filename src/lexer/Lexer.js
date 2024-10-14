@@ -1,5 +1,5 @@
 class Lexer {
-  analyse(it) {
+  analyze(steam) {
     return null
   }
 }
