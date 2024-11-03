@@ -2,11 +2,11 @@
  * 异常处理
  */
 class LexicalException extends Error {
-  constructor(msg) {
+  constructor(msg: string) {
     super(msg)
   }
 
-  static fromChar(c) {
+  static fromChar(c: string) {
     return new LexicalException(`Unexpected char ${c}`)
   }
 }
